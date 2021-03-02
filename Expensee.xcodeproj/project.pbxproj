@@ -20,8 +20,10 @@
 		24AF02D025E5747800BD8060 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24AF02CE25E5747800BD8060 /* LaunchScreen.storyboard */; };
 		24C2AD4B25E763630031EA17 /* DisplayTransactionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C2AD4A25E763630031EA17 /* DisplayTransactionListViewController.swift */; };
 		24C2AD4E25E764280031EA17 /* DatabaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C2AD4D25E764280031EA17 /* DatabaseOperation.swift */; };
+		24E4379625EDF08400F6A7D0 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E4379525EDF08400F6A7D0 /* Utils.swift */; };
 		24FD960425E9FBC10010078C /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD960325E9FBC10010078C /* DatePickerViewController.swift */; };
 		24FD960B25EA072B0010078C /* CoreDataPredicates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD960A25EA072B0010078C /* CoreDataPredicates.swift */; };
+		24FD961325EA2C2E0010078C /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD961225EA2C2E0010078C /* CategoryListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,8 +42,10 @@
 		24AF02D125E5747800BD8060 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24C2AD4A25E763630031EA17 /* DisplayTransactionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayTransactionListViewController.swift; sourceTree = "<group>"; };
 		24C2AD4D25E764280031EA17 /* DatabaseOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseOperation.swift; sourceTree = "<group>"; };
+		24E4379525EDF08400F6A7D0 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		24FD960325E9FBC10010078C /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		24FD960A25EA072B0010078C /* CoreDataPredicates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPredicates.swift; sourceTree = "<group>"; };
+		24FD961225EA2C2E0010078C /* CategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,21 +86,22 @@
 				24AF02CE25E5747800BD8060 /* LaunchScreen.storyboard */,
 				24AF02D125E5747800BD8060 /* Info.plist */,
 				24AF02C925E5747700BD8060 /* Expensee.xcdatamodeld */,
-				24FD960625EA03350010078C /* display */,
+				24FD961025EA2C110010078C /* Category */,
+				24FD960625EA03350010078C /* Display */,
 				24FD960725EA03440010078C /* addTransaction */,
 				24FD960825EA03680010078C /* Common */,
 			);
 			path = Expensee;
 			sourceTree = "<group>";
 		};
-		24FD960625EA03350010078C /* display */ = {
+		24FD960625EA03350010078C /* Display */ = {
 			isa = PBXGroup;
 			children = (
 				24C2AD4A25E763630031EA17 /* DisplayTransactionListViewController.swift */,
 				241D3F9825E9104F00ABD0BF /* TransactionDisplayTableViewCell.swift */,
 				241D3F9925E9104F00ABD0BF /* TransactionDisplayTableViewCell.xib */,
 			);
-			path = display;
+			path = Display;
 			sourceTree = "<group>";
 		};
 		24FD960725EA03440010078C /* addTransaction */ = {
@@ -112,10 +117,19 @@
 			isa = PBXGroup;
 			children = (
 				24C2AD4D25E764280031EA17 /* DatabaseOperation.swift */,
-				241D3FA025E925E700ABD0BF /* Categorys.swift */,
 				24FD960A25EA072B0010078C /* CoreDataPredicates.swift */,
+				24E4379525EDF08400F6A7D0 /* Utils.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		24FD961025EA2C110010078C /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				241D3FA025E925E700ABD0BF /* Categorys.swift */,
+				24FD961225EA2C2E0010078C /* CategoryListViewController.swift */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,9 +208,11 @@
 				24AF02C125E5747700BD8060 /* AppDelegate.swift in Sources */,
 				24FD960B25EA072B0010078C /* CoreDataPredicates.swift in Sources */,
 				24AF02CB25E5747700BD8060 /* Expensee.xcdatamodeld in Sources */,
+				24E4379625EDF08400F6A7D0 /* Utils.swift in Sources */,
 				24AF02C325E5747700BD8060 /* SceneDelegate.swift in Sources */,
 				241D3F9A25E9104F00ABD0BF /* TransactionDisplayTableViewCell.swift in Sources */,
 				24FD960425E9FBC10010078C /* DatePickerViewController.swift in Sources */,
+				24FD961325EA2C2E0010078C /* CategoryListViewController.swift in Sources */,
 				241D3FA125E925E700ABD0BF /* Categorys.swift in Sources */,
 				24C2AD4B25E763630031EA17 /* DisplayTransactionListViewController.swift in Sources */,
 				241D3F9E25E9204000ABD0BF /* AddTransactionViewController.swift in Sources */,

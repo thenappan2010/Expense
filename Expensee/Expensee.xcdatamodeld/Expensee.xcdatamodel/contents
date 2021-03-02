@@ -4,14 +4,14 @@
         <attribute name="categoryName" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Transaction" representedClassName="Transaction" syncable="YES" codeGenerationType="class">
-        <attribute name="amount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="category" optional="YES" attributeType="String"/>
-        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="amount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="category" attributeType="String"/>
+        <attribute name="createdDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="modifiedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="transactionType" optional="YES" attributeType="String"/>
+        <attribute name="transactionType" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Transaction" positionX="-63" positionY="-18" width="128" height="104"/>
         <element name="Category" positionX="-63" positionY="18" width="128" height="44"/>
+        <element name="Transaction" positionX="-63" positionY="-18" width="128" height="104"/>
     </elements>
 </model>

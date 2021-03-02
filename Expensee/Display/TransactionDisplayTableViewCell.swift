@@ -17,6 +17,7 @@ class TransactionDisplayTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         dateLabel.textColor = UIColor.lightGray
+        self.backgroundColor = UIColor.darkGray.withAlphaComponent(0.3)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

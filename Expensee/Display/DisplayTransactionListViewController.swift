@@ -26,6 +26,16 @@ class DisplayTransactionListViewController: UIViewController {
         updateTransationList()
         incomeLabel.textColor = UIColor.green
         expenseLabel.textColor = UIColor.red
+        
+        incomeLabel.backgroundColor = UIColor.darkGray.withAlphaComponent(0.3)
+        expenseLabel.backgroundColor = UIColor.darkGray.withAlphaComponent(0.3)
+        
+        incomeLabel.layer.cornerRadius = 8
+        expenseLabel.layer.cornerRadius = 8
+        
+        incomeLabel.clipsToBounds = true
+        expenseLabel.clipsToBounds = true
+        
         updateIncomeAndExpenseLabel()
         
         table.register(UINib(nibName: "TransactionDisplayTableViewCell", bundle: nil), forCellReuseIdentifier: "TransactionDisplayTableViewCell")
@@ -140,9 +150,7 @@ extension DisplayTransactionListViewController : UITableViewDelegate,UITableView
         
         if let createdDate = transactionList[indexPath.item].createdDate
         {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd-MMM-YYYY HH:mm"
-            cell?.dateLabel.text = dateFormatter.string(from: createdDate)
+            cell?.dateLabel.text = Utils.shared.convertDateToString(date: createdDate)
         }
        
         if transactionList[indexPath.item].transactionType == TransactionType.income
@@ -153,13 +161,42 @@ extension DisplayTransactionListViewController : UITableViewDelegate,UITableView
             cell?.amount.textColor = UIColor.red
         }
         
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "YY, MMM d"
-//        cell.detailTextLabel?.text = dateFormatter.string(from: Date())
-//        cell.detailTextLabel?.textColor = UIColor.red
-
         return cell!
     }
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        print("indexPath   \(indexPath.item)")
+        
+        
+        
+            
+            let controller = AddTransactionViewController.load(storyboard: "Main", identifier: "AddTransactionViewController")
+            controller.modalPresentationStyle  = .fullScreen
+            controller.transactionObject = transactionList[indexPath.item]
+            controller.saveCallBack = { (category,amount,type,date) in
+            
+                DispatchQueue.main.async {
+                    if let amnt = Int32(amount)
+                    {
+                        let transaction = self.transactionList[indexPath.item]
+                        transaction.category = category
+                        transaction.amount = amnt
+                        transaction.transactionType = type
+                        transaction.createdDate = date
+                        transaction.modifiedDate = date
+                    }
+                    _=DatabaseOperation.shared.save()
+                    self.updateTransationList()
+                    print("category   \(category)")
+                    print("amount   \(amount)")
+                    self.updateIncomeAndExpenseLabel()
+                }
+               
+            }
+            self.present(controller, animated: true, completion: nil)
+        
+    }
     
 }

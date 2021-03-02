@@ -22,7 +22,7 @@ struct category {
     static let family = "FAMILY"
     
     
-    func getAllCategorys() -> [String] {
+    static func getAllCategorys() -> [String] {
         
         let arr:[String] = [category.food,
                             category.shopping,
