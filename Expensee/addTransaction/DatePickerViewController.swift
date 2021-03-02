@@ -18,7 +18,7 @@ class DatePickerViewController: UIViewController {
     var dateCallBack : ((Date)->Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        datepicker.timeZone = TimeZone.current
         datepicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
 
     }

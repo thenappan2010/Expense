@@ -186,6 +186,19 @@
                                     <action selector="categoryAction:" destination="oQb-L3-Yzz" eventType="touchUpInside" id="kdZ-Mk-396"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUs-TI-XEB">
+                                <rect key="frame" x="20" y="299.5" width="73" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qhj-Yh-Iyp">
+                                <rect key="frame" x="314" y="295" width="80" height="30"/>
+                                <state key="normal" title="Select Date"/>
+                                <connections>
+                                    <action selector="reminderAction:" destination="oQb-L3-Yzz" eventType="touchUpInside" id="sQ2-61-QoG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hKp-1k-6Mc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -196,17 +209,21 @@
                             <constraint firstItem="Gbl-SS-Ub1" firstAttribute="top" secondItem="tDg-ut-ut6" secondAttribute="bottom" constant="20" id="DhW-Oi-h8x"/>
                             <constraint firstItem="ZuQ-hj-hug" firstAttribute="centerY" secondItem="CA6-jW-7ks" secondAttribute="centerY" id="F9C-4G-8ux"/>
                             <constraint firstItem="hKp-1k-6Mc" firstAttribute="trailing" secondItem="tDg-ut-ut6" secondAttribute="trailing" constant="20" id="FMg-i7-jQ7"/>
+                            <constraint firstItem="tUs-TI-XEB" firstAttribute="centerY" secondItem="Qhj-Yh-Iyp" secondAttribute="centerY" id="G0i-L8-Qwf"/>
                             <constraint firstItem="tDg-ut-ut6" firstAttribute="top" secondItem="CA6-jW-7ks" secondAttribute="bottom" constant="20" id="HiT-ZO-prK"/>
                             <constraint firstItem="hKp-1k-6Mc" firstAttribute="trailing" secondItem="5q9-a5-cc1" secondAttribute="trailing" constant="20" id="IZP-YP-fJa"/>
                             <constraint firstItem="CA6-jW-7ks" firstAttribute="top" secondItem="wZG-2J-yA9" secondAttribute="bottom" constant="20" id="KFr-ez-q8x"/>
                             <constraint firstItem="JCu-2E-HGc" firstAttribute="centerY" secondItem="5q9-a5-cc1" secondAttribute="centerY" id="L7T-qN-V88"/>
                             <constraint firstItem="5q9-a5-cc1" firstAttribute="top" secondItem="hKp-1k-6Mc" secondAttribute="top" constant="10" id="LGq-67-d1N"/>
+                            <constraint firstItem="Qhj-Yh-Iyp" firstAttribute="top" secondItem="Gbl-SS-Ub1" secondAttribute="bottom" constant="10" id="Vta-eH-USx"/>
                             <constraint firstItem="jgw-cL-cmC" firstAttribute="centerY" secondItem="tDg-ut-ut6" secondAttribute="centerY" id="X0T-di-JXT"/>
                             <constraint firstItem="hKp-1k-6Mc" firstAttribute="trailing" secondItem="Gbl-SS-Ub1" secondAttribute="trailing" constant="20" id="ZeS-zS-dQW"/>
                             <constraint firstItem="0nR-oA-OMt" firstAttribute="leading" secondItem="hKp-1k-6Mc" secondAttribute="leading" constant="20" id="bDm-2X-qAy"/>
                             <constraint firstItem="jgw-cL-cmC" firstAttribute="leading" secondItem="hKp-1k-6Mc" secondAttribute="leading" constant="20" id="biI-qh-8CI"/>
+                            <constraint firstItem="tUs-TI-XEB" firstAttribute="leading" secondItem="hKp-1k-6Mc" secondAttribute="leading" constant="20" id="d7I-9p-hh9"/>
                             <constraint firstItem="tDg-ut-ut6" firstAttribute="leading" secondItem="jgw-cL-cmC" secondAttribute="trailing" constant="20" id="epH-Td-ozb"/>
                             <constraint firstItem="wZG-2J-yA9" firstAttribute="centerY" secondItem="0nR-oA-OMt" secondAttribute="centerY" id="mpL-ed-wyD"/>
+                            <constraint firstItem="hKp-1k-6Mc" firstAttribute="trailing" secondItem="Qhj-Yh-Iyp" secondAttribute="trailing" constant="20" id="nPV-de-kAm"/>
                             <constraint firstItem="0nR-oA-OMt" firstAttribute="top" secondItem="JCu-2E-HGc" secondAttribute="bottom" constant="20" id="pLV-TY-CjK"/>
                             <constraint firstItem="CA6-jW-7ks" firstAttribute="leading" secondItem="ZuQ-hj-hug" secondAttribute="trailing" constant="20" id="qhA-Dl-jkB"/>
                             <constraint firstItem="hKp-1k-6Mc" firstAttribute="trailing" secondItem="CA6-jW-7ks" secondAttribute="trailing" constant="20" id="rbZ-zu-Uas"/>
@@ -219,6 +236,7 @@
                         <outlet property="cancelBtn" destination="JCu-2E-HGc" id="5DX-tG-gBm"/>
                         <outlet property="categoryButton" destination="CA6-jW-7ks" id="Vnf-mk-fAy"/>
                         <outlet property="dateBtn" destination="Gbl-SS-Ub1" id="IC3-5U-reC"/>
+                        <outlet property="remiderBtn" destination="Qhj-Yh-Iyp" id="1H5-Jb-0Gy"/>
                         <outlet property="saveBtn" destination="5q9-a5-cc1" id="Phk-NU-5fF"/>
                         <outlet property="segment" destination="wZG-2J-yA9" id="wyf-zN-aug"/>
                     </connections>

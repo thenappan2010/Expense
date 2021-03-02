@@ -106,7 +106,7 @@ class DisplayTransactionListViewController: UIViewController {
         
         let controller = AddTransactionViewController.load(storyboard: "Main", identifier: "AddTransactionViewController")
         controller.modalPresentationStyle  = .fullScreen
-        controller.saveCallBack = { (category,amount,type,date) in
+        controller.saveCallBack = { (category,amount,type,date,reminderDate) in
             
             DispatchQueue.main.async {
                 if let amnt = Int32(amount)
@@ -117,6 +117,9 @@ class DisplayTransactionListViewController: UIViewController {
                     transaction.transactionType = type
                     transaction.createdDate = date
                     transaction.modifiedDate = date
+                    if reminderDate != nil{
+                        transaction.reminderDate = reminderDate
+                    }
                 }
                 _=DatabaseOperation.shared.save()
                 self.updateTransationList()
@@ -175,7 +178,7 @@ extension DisplayTransactionListViewController : UITableViewDelegate,UITableView
             let controller = AddTransactionViewController.load(storyboard: "Main", identifier: "AddTransactionViewController")
             controller.modalPresentationStyle  = .fullScreen
             controller.transactionObject = transactionList[indexPath.item]
-            controller.saveCallBack = { (category,amount,type,date) in
+            controller.saveCallBack = { (category,amount,type,date,reminderDate) in
             
                 DispatchQueue.main.async {
                     if let amnt = Int32(amount)
@@ -186,6 +189,9 @@ extension DisplayTransactionListViewController : UITableViewDelegate,UITableView
                         transaction.transactionType = type
                         transaction.createdDate = date
                         transaction.modifiedDate = date
+                        if reminderDate != nil{
+                            transaction.reminderDate = reminderDate
+                        }
                     }
                     _=DatabaseOperation.shared.save()
                     self.updateTransationList()
@@ -198,5 +204,4 @@ extension DisplayTransactionListViewController : UITableViewDelegate,UITableView
             self.present(controller, animated: true, completion: nil)
         
     }
-    
 }

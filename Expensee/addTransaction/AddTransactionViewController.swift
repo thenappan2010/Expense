@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 
 
@@ -19,9 +20,12 @@ class AddTransactionViewController: UIViewController {
     @IBOutlet weak var dateBtn: UIButton!
     
     @IBOutlet weak var categoryButton: UIButton!
+    @IBOutlet weak var remiderBtn: UIButton!
+    
     
     var selectedDate : Date?
-    var saveCallBack : ((String,String,String,Date)->Void)?
+    var reminderDate : Date?
+    var saveCallBack : ((String,String,String,Date,Date?)->Void)?
     var transactionObject : Transaction?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +47,11 @@ class AddTransactionViewController: UIViewController {
             if let createdDate = obj.createdDate
             {
                 self.dateBtn.setTitle(Utils.shared.convertDateToString(date: createdDate), for: .normal)
+            }
+            
+            if let reminderDate = obj.reminderDate
+            {
+                self.remiderBtn.setTitle(Utils.shared.convertDateToString(date: reminderDate), for: .normal)
             }
             
         }
@@ -81,8 +90,77 @@ class AddTransactionViewController: UIViewController {
     
     @IBAction func saveAction(_ sender: UIButton) {
         
-        saveCallBack?(categoryButton.titleLabel?.text ?? "",self.amountTF.text ?? "",(segment.selectedSegmentIndex == 1 ? TransactionType.income  :TransactionType.expense),selectedDate ?? Date())
+        if transactionObject == nil && reminderDate != nil
+        {
+            addReminder(reminderDate: reminderDate!)
+        }else if reminderDate != nil
+        {
+           if transactionObject?.reminderDate !=  reminderDate!
+           {
+                addReminder(reminderDate: transactionObject?.reminderDate)
+           }
+
+        }
+        
+        saveCallBack?(categoryButton.titleLabel?.text ?? "",self.amountTF.text ?? "",(segment.selectedSegmentIndex == 1 ? TransactionType.income  :TransactionType.expense),selectedDate ?? Date(),reminderDate)
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    func addReminder(reminderDate : Date?)
+    {
+        print("addReminder")
+        let content = UNMutableNotificationContent()
+        content.title = "Time to add Expense"
+        content.sound = .default
+        if self.getCurrentCategoryName().isEmpty == false
+        {
+            content.body = "Your \(self.getCurrentCategoryName()) is about to expire"
+        }
+        
+        
+        
+//        if let date = reminderDate
+//        {
+//
+            let testDate = Date().addingTimeInterval(10)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year,.month,.minute,.day,.hour,.second], from: testDate), repeats: true)
+            
+        let  id = UUID().uuidString
+            let request =  UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().delegate = self
+            UNUserNotificationCenter.current().add(request) { (error) in
+                print("remiinder error \(String(describing: error))")
+            }
+
+
+//        }
+
+    }
+    
+    
+    
+    @IBAction func reminderAction(_ sender: Any) {
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.badge,.sound]) { (success, error) in
+            if success
+            {
+                
+                
+            }else{
+                
+            }
+        }
+        
+        
+        let controller = DatePickerViewController.load(storyboard: "Main", identifier: "DatePickerViewController")
+        controller.dateCallBack = { (date) in
+            self.reminderDate = date
+           
+            self.remiderBtn.setTitle(Utils.shared.convertDateToString(date: date), for: .normal)
+            
+        }
+        self.present(controller, animated: true, completion: nil)
     }
     
     func validateSaveButton()
@@ -95,4 +173,31 @@ class AddTransactionViewController: UIViewController {
         
     }
     
+    
+    func getCurrentCategoryName()->String
+    {
+       if let category = transactionObject?.category
+       {
+            return category
+       }else if categoryButton.titleLabel?.text?.isEmpty == false
+       {
+            return (categoryButton.titleLabel?.text!)!
+       }
+        return ""
+    }
+    
+}
+
+extension AddTransactionViewController : UNUserNotificationCenterDelegate
+
+{
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        if notification.request.trigger is UNCalendarNotificationTrigger || notification.request.trigger is UNTimeIntervalNotificationTrigger {
+            
+         
+        }
+        
+        completionHandler([.alert, .badge, .sound])
+    }
 }
