@@ -10,16 +10,24 @@ import Foundation
 
 struct category {
     
-    static let food = "FOOD"
-    static let shopping = "SHOPPING"
-    static let transport = "TRANSPORT"
-    static let home = "HOME"
-    static let entertainment = "ENTERTAINMENT"
-    static let groceries = "GROCERIES"
-    static let ottPlatform = "OTTPLATFORM"
-    static let gifts = "GIFTS"
-    static let rent = "RENT"
-    static let family = "FAMILY"
+    static let food = "Food"
+    static let shopping = "Shopping"
+    static let transport = "Transport"
+    static let home = "Home"
+    static let entertainment = "Entertainmet"
+    static let groceries = "Groceries"
+    static let ottPlatform = "OTT Platform"
+    static let gifts = "Gifts"
+    static let rent = "Rent"
+    static let family = "Family"
+    static let dress = "Dress"
+    static let electricity = "Electricity"
+    
+    
+    static let dict = [category.entertainment : categoryIcon.entertainment,
+                category.dress : categoryIcon.cloth,
+                category.electricity:categoryIcon.electricity,
+                ]
     
     
     static func getAllCategorys() -> [String] {
@@ -33,8 +41,16 @@ struct category {
                             category.ottPlatform,
                             category.gifts,
                             category.rent,
-                            category.family]
+                            category.family,
+                            category.electricity,
+                            category.dress]
         return arr
+    }
+    
+    
+    static func getImageForCategory(category : String) -> String?
+    {
+       return dict[category]
     }
     
 }
@@ -51,5 +67,11 @@ enum transactionDisplayType
 {
     case onlyIncome
     case onlyExpense
+    
+    case monthIncome
+    case monthExpense
+    
     case all
+    case month
+    
 }

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import GoogleAPIClientForREST
+import GoogleSignIn
 
 class DisplayTransactionListViewController: UIViewController {
 
@@ -15,6 +17,7 @@ class DisplayTransactionListViewController: UIViewController {
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var displayType: UIButton!
     
+    @IBOutlet weak var graphBtn: UIButton!
     
     var transactionList : [Transaction] = []
     
@@ -42,23 +45,54 @@ class DisplayTransactionListViewController: UIViewController {
         table.delegate = self
         table.dataSource = self
         
+        
+//        print("startt   \(Date().startOfMonth())")
+//        print("enddd   \(Date().endOfMonth())")
     }
     func updateTransationList()
     {
-        if currentDisplayType == .all
-        {
-            transactionList = DatabaseOperation.shared.fetchTransaction(sortBasedOnDate: true,transactiontype: .all)
-        }else if currentDisplayType == .onlyIncome
-        {
-            transactionList = DatabaseOperation.shared.fetchTransaction(sortBasedOnDate: true,transactiontype: .onlyIncome)
-        }else if currentDisplayType == .onlyExpense
-        {
-            transactionList = DatabaseOperation.shared.fetchTransaction(sortBasedOnDate: true,transactiontype: .onlyExpense)
+        transactionList = DatabaseOperation.shared.fetchTransaction(sortBasedOnDate: true,transactiontype: currentDisplayType)
+        let predicate = { (element: Transaction) in
+            return element.category
         }
-        self.table.reloadData()
+        let dic = Dictionary(grouping: transactionList, by: predicate)
         
+        for (category,transactions) in dic
+        {
+            let val = transactions.reduce(0) { $0 + ($1.amount) }
+            
+            print("category : \(category) ___ val  : \(val) ")
+            
+        }
+         print("dic   \(dic)")
+        self.table.reloadData()
     }
     
+    
+    func uploadFile(name: String, folderID: String, fileURL: URL, mimeType: String,service: GTLRDriveService) {
+        
+        let file = GTLRDrive_File()
+        file.name = name
+        file.parents = [folderID]
+        
+        // Optionally, GTLRUploadParameters can also be created with a Data object.
+        let uploadParameters = GTLRUploadParameters(fileURL: fileURL, mimeType: mimeType)
+        
+        let query = GTLRDriveQuery_FilesCreate.query(withObject: file, uploadParameters: uploadParameters)
+        
+        service.uploadProgressBlock = { _, totalBytesUploaded, totalBytesExpectedToUpload in
+            // This block is called multiple times during upload and can
+            // be used to update a progress indicator visible to the user.
+        }
+        
+        service.executeQuery(query) { (_, result, error) in
+            guard error == nil else {
+                fatalError(error!.localizedDescription)
+            }
+            
+            // Successful upload if no error is returned.
+        }
+    }
     
     func updateIncomeAndExpenseLabel()
     {
@@ -84,6 +118,16 @@ class DisplayTransactionListViewController: UIViewController {
             self.updateTransationList()
         })
         
+        let monthlyExpense = UIAlertAction(title: "Monthly Expense" , style: .default , handler:{ (UIAlertAction)in
+            self.currentDisplayType = .monthExpense
+            self.updateTransationList()
+        })
+        
+        let monthlyIncome = UIAlertAction(title: "Monthly Income" , style: .default , handler:{ (UIAlertAction)in
+            self.currentDisplayType = .monthIncome
+            self.updateTransationList()
+        })
+        
         let all = UIAlertAction(title: "All" , style: .default , handler:{ (UIAlertAction)in
             self.currentDisplayType = .all
             self.updateTransationList()
@@ -93,6 +137,8 @@ class DisplayTransactionListViewController: UIViewController {
         
         alert.addAction(onlyIncome)
         alert.addAction(onlyExpense)
+        alert.addAction(monthlyIncome)
+        alert.addAction(monthlyExpense)
         alert.addAction(all)
         alert.addAction(cancel)
         
@@ -102,12 +148,42 @@ class DisplayTransactionListViewController: UIViewController {
     }
     
     
-    @IBAction func addAction(_ sender: UIButton) {
+    @IBAction func graphAction(_ sender: UIButton) {
         
+        let controller = GraphViewController.load(storyboard: "Main", identifier: "GraphViewController")
+        
+        let predicate = { (element: Transaction) in
+            return element.category
+        }
+        let dic = Dictionary(grouping: transactionList, by: predicate)
+        
+        var newDict : [String : Int32] = [:]
+        for (category,transactions) in dic.prefix(5)
+        {
+            let val = transactions.reduce(0) { $0 + ($1.amount) }
+            newDict[category!] = val
+            print("category : \(String(describing: category)) ___ val  : \(val) ")
+            
+        }
+        
+        
+//        sortedDict["Others"] = dict.sorted(by: byValue).suffix(from: 5).reduce(0) { $0 + ($1.amount) }
+        controller.dict = newDict
+        self.present(controller, animated: true, completion: nil)
+    }
+    
+    
+    
+    @IBAction func addAction(_ sender: UIButton)
+//    {
+////        uploadFile(name: "name", folderID: "", fileURL: <#T##URL#>, mimeType: "text/plain", service: <#T##GTLRDriveService#>)
+//    }
+    {
+
         let controller = AddTransactionViewController.load(storyboard: "Main", identifier: "AddTransactionViewController")
         controller.modalPresentationStyle  = .fullScreen
         controller.saveCallBack = { (category,amount,type,date,reminderDate) in
-            
+
             DispatchQueue.main.async {
                 if let amnt = Int32(amount)
                 {
@@ -127,7 +203,7 @@ class DisplayTransactionListViewController: UIViewController {
                 print("amount   \(amount)")
                 self.updateIncomeAndExpenseLabel()
             }
-           
+
         }
         self.present(controller, animated: true, completion: nil)
     }
@@ -148,9 +224,16 @@ extension DisplayTransactionListViewController : UITableViewDelegate,UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let  cell = tableView.dequeueReusableCell(withIdentifier: "TransactionDisplayTableViewCell", for: indexPath) as? TransactionDisplayTableViewCell
-        cell?.amount.text = String(transactionList[indexPath.item].amount)
+        cell?.amount.text =  "₹" + String(transactionList[indexPath.item].amount)
         cell?.categoryName.text = transactionList[indexPath.item].category//"Category name"
         
+        if let imageName = category.getImageForCategory(category: transactionList[indexPath.item].category ?? "")
+        {
+            cell?.categoryImage.image = UIImage(named: imageName)!
+        }else
+        {
+            cell?.categoryImage.image = UIImage(systemName: "megaphone.fill")
+        }
         if let createdDate = transactionList[indexPath.item].createdDate
         {
             cell?.dateLabel.text = Utils.shared.convertDateToString(date: createdDate)
@@ -158,10 +241,10 @@ extension DisplayTransactionListViewController : UITableViewDelegate,UITableView
        
         if transactionList[indexPath.item].transactionType == TransactionType.income
         {
-            cell?.amount.textColor = UIColor.green
+            cell?.amount.textColor = UIColor.green.withAlphaComponent(0.7)
         }else
         {
-            cell?.amount.textColor = UIColor.red
+            cell?.amount.textColor = UIColor.red.withAlphaComponent(0.7)
         }
         
         return cell!

@@ -59,9 +59,17 @@ class DatabaseOperation: NSObject {
         }else if transactiontype == .onlyIncome
         {
             fetchRequest.predicate =  CoreDataPredicate.incomePredicate
+        }else if transactiontype == .monthIncome
+        {
+            let combined = NSCompoundPredicate(type: .and, subpredicates: [CoreDataPredicate.incomePredicate,  CoreDataPredicate.currentMonth])
+            fetchRequest.predicate =  combined
+        }else if transactiontype == .monthExpense
+        {
+            let combined = NSCompoundPredicate(type: .and, subpredicates: [CoreDataPredicate.expensePredicate,  CoreDataPredicate.currentMonth])
+            fetchRequest.predicate =  combined
         }
         
-        
+                
         if sortBasedOnDate ==  true
         {
             fetchRequest.sortDescriptors  = [CoreDataPredicate.transactinDatePredicate]

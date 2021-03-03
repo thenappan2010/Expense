@@ -17,6 +17,7 @@ class Utils: NSObject {
     {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MMM-YYYY HH:mm"
+        dateFormatter.timeZone = TimeZone.current
         return dateFormatter.string(from: date)
     }
 }

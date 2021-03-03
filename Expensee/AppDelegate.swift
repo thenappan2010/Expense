@@ -7,14 +7,22 @@
 
 import UIKit
 import CoreData
+import GoogleSignIn
+import GoogleAPIClientForREST
+import GTMSessionFetcher
 
+
+  
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
+    public var driveService : GTLRDriveService =  GTLRDriveService()
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        setupGoogle()
         return true
     }
 
@@ -76,6 +84,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    
+    func setupGoogle()
+    {
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance()?.uiDelegate = self
+        GIDSignIn.sharedInstance()?.clientID = "570372699845-fcqls9u21e4sfqp1fmg0la7hdsiur2mg.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance()?.scopes =
+                    [kGTLRAuthScopeDrive,kGTLRAuthScopeDriveFile,kGTLRAuthScopeDriveMetadata]
+                
+        GIDSignIn.sharedInstance()?.signInSilently()
+    }
 
 }
 
+
+extension AppDelegate : GIDSignInDelegate,GIDSignInUIDelegate
+{
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+
+        guard let user = user else {
+
+            return
+        }
+            driveService.authorizer = user.authentication.fetcherAuthorizer()
+//            driveService.authorizer = user.authentication.fetcherAuthorizer()
+            var accDetail = [AnyHashable: Any]()
+            accDetail["username"] = user.profile.name
+            accDetail["email"] = user.profile.email
+            accDetail["userId"] = user.userID
+            accDetail["serverAuthCode"] = user.serverAuthCode
+            accDetail["idToken"] = user.authentication.idToken
+
+//           Utils.setPreferenceValue(setValue: accDetail, ForKey: kGoogleUser)
+//           NotificationCenter.default.post(name: NSNotification.Name("DSGoogleSignIn"), object: nil)
+    }
+    
+    
+}

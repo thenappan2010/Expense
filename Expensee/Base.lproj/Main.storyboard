@@ -81,6 +81,13 @@
                                     <action selector="displayTypeAction:" destination="Blb-bW-fo7" eventType="touchUpInside" id="V3C-bx-FAX"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="87Y-TH-mWs">
+                                <rect key="frame" x="307" y="49" width="42" height="30"/>
+                                <state key="normal" title="Graph"/>
+                                <connections>
+                                    <action selector="graphAction:" destination="Blb-bW-fo7" eventType="touchUpInside" id="utq-1f-Lf8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6bh-9f-hOn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -89,6 +96,7 @@
                             <constraint firstItem="zLc-5I-QT1" firstAttribute="leading" secondItem="6bh-9f-hOn" secondAttribute="leading" id="4KS-4p-Aog"/>
                             <constraint firstItem="6bh-9f-hOn" firstAttribute="trailing" secondItem="CRZ-pu-bGA" secondAttribute="trailing" constant="15" id="62G-6d-Jlx"/>
                             <constraint firstItem="zLc-5I-QT1" firstAttribute="top" secondItem="VO6-qi-xdz" secondAttribute="bottom" constant="20" id="6JM-04-0Bj"/>
+                            <constraint firstItem="CRZ-pu-bGA" firstAttribute="leading" secondItem="87Y-TH-mWs" secondAttribute="trailing" constant="20" id="7MD-6m-Sjk"/>
                             <constraint firstItem="izK-hz-CBS" firstAttribute="centerY" secondItem="Gx4-Fi-Qgb" secondAttribute="centerY" id="Ag2-JG-bb2"/>
                             <constraint firstItem="CRZ-pu-bGA" firstAttribute="top" secondItem="6bh-9f-hOn" secondAttribute="top" constant="5" id="Cqy-LT-fy2"/>
                             <constraint firstItem="izK-hz-CBS" firstAttribute="leading" secondItem="VO6-qi-xdz" secondAttribute="trailing" constant="10" id="Fzl-aI-fkK"/>
@@ -96,12 +104,14 @@
                             <constraint firstItem="6bh-9f-hOn" firstAttribute="trailing" secondItem="izK-hz-CBS" secondAttribute="trailing" constant="10" id="Ne4-Oj-S5H"/>
                             <constraint firstItem="zLc-5I-QT1" firstAttribute="top" secondItem="6bh-9f-hOn" secondAttribute="top" constant="140" id="Z0Y-Ey-ZYD"/>
                             <constraint firstItem="VO6-qi-xdz" firstAttribute="top" secondItem="6bh-9f-hOn" secondAttribute="top" constant="50" id="gJx-jZ-BZh"/>
+                            <constraint firstItem="87Y-TH-mWs" firstAttribute="centerY" secondItem="CRZ-pu-bGA" secondAttribute="centerY" id="nMb-g0-YQl"/>
                             <constraint firstItem="6bh-9f-hOn" firstAttribute="bottom" secondItem="zLc-5I-QT1" secondAttribute="bottom" id="oIe-He-QCa"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="displayType" destination="izK-hz-CBS" id="6Ap-3K-tJi"/>
                         <outlet property="expenseLabel" destination="Gx4-Fi-Qgb" id="GDd-fG-Klb"/>
+                        <outlet property="graphBtn" destination="87Y-TH-mWs" id="2Gs-Kf-PBK"/>
                         <outlet property="incomeLabel" destination="tt5-eO-pmt" id="R8a-zR-NUb"/>
                         <outlet property="table" destination="zLc-5I-QT1" id="jcQ-k1-YhT"/>
                     </connections>
@@ -334,6 +344,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qnk-0a-da7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3004.347826086957" y="124.55357142857142"/>
+        </scene>
+        <!--Graph View Controller-->
+        <scene sceneID="c7o-hJ-pX6">
+            <objects>
+                <viewController storyboardIdentifier="GraphViewController" id="7xg-nE-3sE" customClass="GraphViewController" customModule="Expensee" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ndj-YT-mAQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uzq-fE-2xQ" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="20" y="104" width="374" height="374"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="uzq-fE-2xQ" secondAttribute="height" multiplier="1:1" id="47C-cv-t2H"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BZp-SD-Dn8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="BZp-SD-Dn8" firstAttribute="trailing" secondItem="uzq-fE-2xQ" secondAttribute="trailing" constant="20" id="SY0-Zi-L1z"/>
+                            <constraint firstItem="uzq-fE-2xQ" firstAttribute="top" secondItem="BZp-SD-Dn8" secondAttribute="top" constant="60" id="aas-MZ-fAI"/>
+                            <constraint firstItem="uzq-fE-2xQ" firstAttribute="leading" secondItem="BZp-SD-Dn8" secondAttribute="leading" constant="20" id="zvE-in-6vr"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="piechart" destination="uzq-fE-2xQ" id="tpQ-0j-8zv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Erf-VN-xOM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3775.36231884058" y="126.5625"/>
         </scene>
     </scenes>
     <resources>

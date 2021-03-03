@@ -120,22 +120,17 @@ class AddTransactionViewController: UIViewController {
         
         
         
-//        if let date = reminderDate
-//        {
-//
-            let testDate = Date().addingTimeInterval(10)
+        if let date = reminderDate
+        {
+            let testDate = date//Date().addingTimeInterval(10)
             let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year,.month,.minute,.day,.hour,.second], from: testDate), repeats: true)
-            
-        let  id = UUID().uuidString
+            let  id = UUID().uuidString
             let request =  UNNotificationRequest(identifier: id, content: content, trigger: trigger)
-        UNUserNotificationCenter.current().delegate = self
+            UNUserNotificationCenter.current().delegate = self
             UNUserNotificationCenter.current().add(request) { (error) in
                 print("remiinder error \(String(describing: error))")
             }
-
-
-//        }
-
+        }
     }
     
     

@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2407E8D225EFD0D6005AB2D7 /* IconIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407E8D125EFD0D6005AB2D7 /* IconIdentifiers.swift */; };
+		2407E8D725EFEF42005AB2D7 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407E8D625EFEF42005AB2D7 /* GraphViewController.swift */; };
 		241D3F9A25E9104F00ABD0BF /* TransactionDisplayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D3F9825E9104F00ABD0BF /* TransactionDisplayTableViewCell.swift */; };
 		241D3F9B25E9104F00ABD0BF /* TransactionDisplayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 241D3F9925E9104F00ABD0BF /* TransactionDisplayTableViewCell.xib */; };
 		241D3F9E25E9204000ABD0BF /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D3F9D25E9204000ABD0BF /* AddTransactionViewController.swift */; };
@@ -24,9 +26,12 @@
 		24FD960425E9FBC10010078C /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD960325E9FBC10010078C /* DatePickerViewController.swift */; };
 		24FD960B25EA072B0010078C /* CoreDataPredicates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD960A25EA072B0010078C /* CoreDataPredicates.swift */; };
 		24FD961325EA2C2E0010078C /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD961225EA2C2E0010078C /* CategoryListViewController.swift */; };
+		E82C890EDAFB11992AF4D47E /* Pods_Expensee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 987B38AAF3311FE99CA0AE66 /* Pods_Expensee.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2407E8D125EFD0D6005AB2D7 /* IconIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconIdentifiers.swift; sourceTree = "<group>"; };
+		2407E8D625EFEF42005AB2D7 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 		241D3F9825E9104F00ABD0BF /* TransactionDisplayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDisplayTableViewCell.swift; sourceTree = "<group>"; };
 		241D3F9925E9104F00ABD0BF /* TransactionDisplayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionDisplayTableViewCell.xib; sourceTree = "<group>"; };
 		241D3F9D25E9204000ABD0BF /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
@@ -46,6 +51,9 @@
 		24FD960325E9FBC10010078C /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		24FD960A25EA072B0010078C /* CoreDataPredicates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPredicates.swift; sourceTree = "<group>"; };
 		24FD961225EA2C2E0010078C /* CategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewController.swift; sourceTree = "<group>"; };
+		5E552D933F104CFD4ABBA5F8 /* Pods-Expensee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expensee.debug.xcconfig"; path = "Target Support Files/Pods-Expensee/Pods-Expensee.debug.xcconfig"; sourceTree = "<group>"; };
+		987B38AAF3311FE99CA0AE66 /* Pods_Expensee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Expensee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B90F7B732E2D824B5D551666 /* Pods-Expensee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expensee.release.xcconfig"; path = "Target Support Files/Pods-Expensee/Pods-Expensee.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,17 +61,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E82C890EDAFB11992AF4D47E /* Pods_Expensee.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2407E8D525EFEF33005AB2D7 /* Graph */ = {
+			isa = PBXGroup;
+			children = (
+				2407E8D625EFEF42005AB2D7 /* GraphViewController.swift */,
+			);
+			path = Graph;
+			sourceTree = "<group>";
+		};
 		24AF02B425E5747700BD8060 = {
 			isa = PBXGroup;
 			children = (
 				24AF02BF25E5747700BD8060 /* Expensee */,
 				24AF02BE25E5747700BD8060 /* Products */,
+				90F67C90F9C5DE2F138D5628 /* Pods */,
+				8C2BA19F43AAA528A136B6F6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +105,7 @@
 				24AF02CE25E5747800BD8060 /* LaunchScreen.storyboard */,
 				24AF02D125E5747800BD8060 /* Info.plist */,
 				24AF02C925E5747700BD8060 /* Expensee.xcdatamodeld */,
+				2407E8D525EFEF33005AB2D7 /* Graph */,
 				24FD961025EA2C110010078C /* Category */,
 				24FD960625EA03350010078C /* Display */,
 				24FD960725EA03440010078C /* addTransaction */,
@@ -119,6 +139,7 @@
 				24C2AD4D25E764280031EA17 /* DatabaseOperation.swift */,
 				24FD960A25EA072B0010078C /* CoreDataPredicates.swift */,
 				24E4379525EDF08400F6A7D0 /* Utils.swift */,
+				2407E8D125EFD0D6005AB2D7 /* IconIdentifiers.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -132,6 +153,23 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		8C2BA19F43AAA528A136B6F6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				987B38AAF3311FE99CA0AE66 /* Pods_Expensee.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		90F67C90F9C5DE2F138D5628 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5E552D933F104CFD4ABBA5F8 /* Pods-Expensee.debug.xcconfig */,
+				B90F7B732E2D824B5D551666 /* Pods-Expensee.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,9 +177,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24AF02D425E5747800BD8060 /* Build configuration list for PBXNativeTarget "Expensee" */;
 			buildPhases = (
+				CF9A83A43DCBA809111CB305 /* [CP] Check Pods Manifest.lock */,
 				24AF02B925E5747700BD8060 /* Sources */,
 				24AF02BA25E5747700BD8060 /* Frameworks */,
 				24AF02BB25E5747700BD8060 /* Resources */,
+				84F68213EEF6E80209F02325 /* [CP] Embed Pods Frameworks */,
+				FC8DAC0DFD7AC37B0A2CA42F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -198,6 +239,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		84F68213EEF6E80209F02325 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Expensee/Pods-Expensee-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Expensee/Pods-Expensee-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Expensee/Pods-Expensee-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CF9A83A43DCBA809111CB305 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Expensee-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC8DAC0DFD7AC37B0A2CA42F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Expensee/Pods-Expensee-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Expensee/Pods-Expensee-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Expensee/Pods-Expensee-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		24AF02B925E5747700BD8060 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -209,7 +309,9 @@
 				24FD960B25EA072B0010078C /* CoreDataPredicates.swift in Sources */,
 				24AF02CB25E5747700BD8060 /* Expensee.xcdatamodeld in Sources */,
 				24E4379625EDF08400F6A7D0 /* Utils.swift in Sources */,
+				2407E8D725EFEF42005AB2D7 /* GraphViewController.swift in Sources */,
 				24AF02C325E5747700BD8060 /* SceneDelegate.swift in Sources */,
+				2407E8D225EFD0D6005AB2D7 /* IconIdentifiers.swift in Sources */,
 				241D3F9A25E9104F00ABD0BF /* TransactionDisplayTableViewCell.swift in Sources */,
 				24FD960425E9FBC10010078C /* DatePickerViewController.swift in Sources */,
 				24FD961325EA2C2E0010078C /* CategoryListViewController.swift in Sources */,
@@ -359,6 +461,7 @@
 		};
 		24AF02D525E5747800BD8060 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E552D933F104CFD4ABBA5F8 /* Pods-Expensee.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -378,6 +481,7 @@
 		};
 		24AF02D625E5747800BD8060 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B90F7B732E2D824B5D551666 /* Pods-Expensee.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

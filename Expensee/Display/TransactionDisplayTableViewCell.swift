@@ -12,6 +12,7 @@ class TransactionDisplayTableViewCell: UITableViewCell {
     @IBOutlet weak var categoryName: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var amount: UILabel!
+    @IBOutlet weak var categoryImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
