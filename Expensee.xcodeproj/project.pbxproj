@@ -9,10 +9,13 @@
 /* Begin PBXBuildFile section */
 		2407E8D225EFD0D6005AB2D7 /* IconIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407E8D125EFD0D6005AB2D7 /* IconIdentifiers.swift */; };
 		2407E8D725EFEF42005AB2D7 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407E8D625EFEF42005AB2D7 /* GraphViewController.swift */; };
+		2407E8E225F007E6005AB2D7 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407E8E125F007E6005AB2D7 /* MainTabBarViewController.swift */; };
 		241D3F9A25E9104F00ABD0BF /* TransactionDisplayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D3F9825E9104F00ABD0BF /* TransactionDisplayTableViewCell.swift */; };
 		241D3F9B25E9104F00ABD0BF /* TransactionDisplayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 241D3F9925E9104F00ABD0BF /* TransactionDisplayTableViewCell.xib */; };
 		241D3F9E25E9204000ABD0BF /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D3F9D25E9204000ABD0BF /* AddTransactionViewController.swift */; };
 		241D3FA125E925E700ABD0BF /* Categorys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D3FA025E925E700ABD0BF /* Categorys.swift */; };
+		2459A9D725F0FBD600080A7E /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459A9D525F0FBD600080A7E /* CategoryTableViewCell.swift */; };
+		2459A9D825F0FBD600080A7E /* CategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2459A9D625F0FBD600080A7E /* CategoryTableViewCell.xib */; };
 		24AF02C125E5747700BD8060 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF02C025E5747700BD8060 /* AppDelegate.swift */; };
 		24AF02C325E5747700BD8060 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF02C225E5747700BD8060 /* SceneDelegate.swift */; };
 		24AF02C525E5747700BD8060 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF02C425E5747700BD8060 /* ViewController.swift */; };
@@ -32,10 +35,13 @@
 /* Begin PBXFileReference section */
 		2407E8D125EFD0D6005AB2D7 /* IconIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconIdentifiers.swift; sourceTree = "<group>"; };
 		2407E8D625EFEF42005AB2D7 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
+		2407E8E125F007E6005AB2D7 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		241D3F9825E9104F00ABD0BF /* TransactionDisplayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDisplayTableViewCell.swift; sourceTree = "<group>"; };
 		241D3F9925E9104F00ABD0BF /* TransactionDisplayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionDisplayTableViewCell.xib; sourceTree = "<group>"; };
 		241D3F9D25E9204000ABD0BF /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
 		241D3FA025E925E700ABD0BF /* Categorys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categorys.swift; sourceTree = "<group>"; };
+		2459A9D525F0FBD600080A7E /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		2459A9D625F0FBD600080A7E /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
 		24AF02BD25E5747700BD8060 /* Expensee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expensee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24AF02C025E5747700BD8060 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24AF02C225E5747700BD8060 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +116,7 @@
 				24FD960625EA03350010078C /* Display */,
 				24FD960725EA03440010078C /* addTransaction */,
 				24FD960825EA03680010078C /* Common */,
+				2407E8E125F007E6005AB2D7 /* MainTabBarViewController.swift */,
 			);
 			path = Expensee;
 			sourceTree = "<group>";
@@ -149,6 +156,8 @@
 			children = (
 				241D3FA025E925E700ABD0BF /* Categorys.swift */,
 				24FD961225EA2C2E0010078C /* CategoryListViewController.swift */,
+				2459A9D525F0FBD600080A7E /* CategoryTableViewCell.swift */,
+				2459A9D625F0FBD600080A7E /* CategoryTableViewCell.xib */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -231,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24AF02D025E5747800BD8060 /* LaunchScreen.storyboard in Resources */,
+				2459A9D825F0FBD600080A7E /* CategoryTableViewCell.xib in Resources */,
 				24AF02CD25E5747800BD8060 /* Assets.xcassets in Resources */,
 				24AF02C825E5747700BD8060 /* Main.storyboard in Resources */,
 				241D3F9B25E9104F00ABD0BF /* TransactionDisplayTableViewCell.xib in Resources */,
@@ -312,12 +322,14 @@
 				2407E8D725EFEF42005AB2D7 /* GraphViewController.swift in Sources */,
 				24AF02C325E5747700BD8060 /* SceneDelegate.swift in Sources */,
 				2407E8D225EFD0D6005AB2D7 /* IconIdentifiers.swift in Sources */,
+				2407E8E225F007E6005AB2D7 /* MainTabBarViewController.swift in Sources */,
 				241D3F9A25E9104F00ABD0BF /* TransactionDisplayTableViewCell.swift in Sources */,
 				24FD960425E9FBC10010078C /* DatePickerViewController.swift in Sources */,
 				24FD961325EA2C2E0010078C /* CategoryListViewController.swift in Sources */,
 				241D3FA125E925E700ABD0BF /* Categorys.swift in Sources */,
 				24C2AD4B25E763630031EA17 /* DisplayTransactionListViewController.swift in Sources */,
 				241D3F9E25E9204000ABD0BF /* AddTransactionViewController.swift in Sources */,
+				2459A9D725F0FBD600080A7E /* CategoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

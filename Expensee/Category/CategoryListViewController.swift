@@ -12,10 +12,12 @@ class CategoryListViewController: UIViewController {
     @IBOutlet weak var tableview: UITableView!
     
     var categorySelectionCallBack : ((String)->Void)?
+    var selectedCategory : String?
     var categoryList = category.getAllCategorys()
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableview.register(UINib(nibName: "CategoryTableViewCell", bundle: nil), forCellReuseIdentifier: "CategoryTableViewCell")
         tableview.delegate = self
         tableview.dataSource = self
        
@@ -35,8 +37,22 @@ extension CategoryListViewController:UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableview.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
-        cell.textLabel?.text =  categoryList[indexPath.item]
+        let cell = tableview.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as! CategoryTableViewCell
+        cell.categoryName.text =  categoryList[indexPath.item]
+        if let imageName = category.getImageForCategory(category: categoryList[indexPath.item])
+        {
+            cell.categoryImage.image = UIImage(named: imageName)!
+        }else
+        {
+            cell.categoryImage.image = UIImage(systemName: "megaphone.fill")
+        }
+        if selectedCategory == categoryList[indexPath.item]
+        {
+            cell.accessoryType = .checkmark
+        }else
+        {
+            cell.accessoryType = .none
+        }
         return cell
     }
     

@@ -16,7 +16,23 @@ class GraphViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let  transactionList = DatabaseOperation.shared.fetchTransaction(sortBasedOnDate: true,transactiontype: .all)
+        let predicate = { (element: Transaction) in
+            return element.category
+        }
+        let dic = Dictionary(grouping: transactionList, by: predicate)
+        
+        var newDict : [String : Int32] = [:]
+        for (category,transactions) in dic.prefix(5)
+        {
+            let val = transactions.reduce(0) { $0 + ($1.amount) }
+            newDict[category!] = val
+            print("category : \(String(describing: category)) ___ val  : \(val) ")
+            
+        }
+        dict = newDict
+        
         var dataEntries: [ChartDataEntry] = []
         let byValue = {
             (elem1:(key: String, val: Int32), elem2:(key: String, val: Int32))->Bool in

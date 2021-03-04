@@ -64,6 +64,7 @@ class AddTransactionViewController: UIViewController {
     @IBAction func categoryAction(_ sender: Any) {
         
         let controller = CategoryListViewController.load(storyboard: "Main", identifier: "CategoryListViewController")
+        controller.selectedCategory = self.categoryButton.titleLabel?.text ?? nil
         controller.categorySelectionCallBack = { (category) in
             self.categoryButton.setTitle(category, for: .normal)
             self.validateSaveButton()
